@@ -28,7 +28,7 @@ size_t strdeque_size(unsigned long id) {
 
 void strdeque_insert_at(unsigned long id, size_t pos, const char* value) {
     mapIterator it = dequeMap.find(id);
-    if (it != dequeMap.end() and value != NULL and pos <= strdeque_size(id)) {
+    if (it != dequeMap.end() and value != NULL) {
         if (pos < strdeque_size(id))
             (dequeMap.at(id)).insert((dequeMap.at(id)).begin() + pos, value);
         else
