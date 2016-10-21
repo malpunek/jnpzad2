@@ -6,6 +6,7 @@ using namespace std;
 
 using mapIterator = map<unsigned long, deque<string> >::iterator;
 map<unsigned long, deque<string> > dequeMap;
+
 unsigned long availableId = 0;
 
 unsigned long strdeque_new() {
@@ -22,7 +23,7 @@ size_t strdeque_size(unsigned long id) {
 	mapIterator it = dequeMap.find(id);
     if (it != dequeMap.end())
         return (dequeMap.at(id)).size();
-    return 0;
+    return (size_t) 0;
 }
 
 void strdeque_insert_at(unsigned long id, size_t pos, const char* value) {
@@ -72,6 +73,5 @@ int main(int argc, const char * argv[]) {
     unsigned long id1 = strdeque_new();
     unsigned long id2 = strdeque_new();
     strdeque_delete(2);
-
     return 0;
 }
