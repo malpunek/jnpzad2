@@ -1,0 +1,21 @@
+#ifndef cstrdequeconst_h
+#define cstrdequeconst_h
+
+#include <iostream>
+
+using namespace std;
+
+namespace jnp1 {
+#ifndef NDEBUG
+    unsigned long emptystrdeque() {
+        cerr << "emptystrdeque()" << endl;
+        return 0;
+    }
+#else
+    unsigned long emptystrdeque() {
+        return 0;
+    }
+#endif
+}
+
+#endif /* cstrdequeconst_h */

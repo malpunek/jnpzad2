@@ -13,12 +13,12 @@ unsigned long availableId = 0;
 #ifndef NDEBUG
 unsigned long strdeque_new() {
     cerr << "strdeque_new()" << endl;
-    
+
     deque <string> kolejka;
     dequeMap.insert(make_pair(availableId, kolejka));
-    
+
     cerr << "strdeque_new: deque " << availableId << " created" << endl;
-    
+
     return availableId++;
 }
 
@@ -41,7 +41,9 @@ size_t strdeque_size(unsigned long id) {
 }
 
 void strdeque_insert_at(unsigned long id, size_t pos, const char* value) {
-    cerr << "strdeque_insert_at(" << id << ", " << pos << ", " << (value == NULL ? "NULL" : value) << ")" << endl;
+    cerr << "strdeque_insert_at(" << id << ", " << pos << ", ";
+    if (value == NULL) cerr << "NULL" << ")" << endl;
+    else cerr << "\"" << value << "\"" << ")" << endl;
     mapIterator it = dequeMap.find(id);
     if (it != dequeMap.end()) {
         if (value != NULL) {
@@ -84,7 +86,7 @@ const char* strdeque_get_at(unsigned long id, size_t pos) {
     if (it != dequeMap.end()) {
         if (pos < strdeque_size(id)) {
             cerr << "strdeque_get_at: " << "deque " << id << ", element at " << pos;
-            cerr << " is " << (dequeMap.at(id)).at(pos).c_str() << endl;
+            cerr << " is \"" << (dequeMap.at(id)).at(pos).c_str() << "\"" << endl;
             return (dequeMap.at(id)).at(pos).c_str();
         }
         else
@@ -203,13 +205,6 @@ int strdeque_comp(unsigned long id1, unsigned long id2) {
         else return 1;
     }
 }
-
-int main(int argc, const char * argv[]) {
-    unsigned long id1 = strdeque_new();
-    unsigned long id2 = strdeque_new();
-    
-    return 0;
-}
 #endif
 
 void assertTest(const char *value) {
@@ -220,11 +215,11 @@ void assertTest(const char *value) {
 }
 
 
-int main(int argc, const char * argv[]) {
+/*int main(int argc, const char * argv[]) {
     unsigned long id1 = strdeque_new();
     unsigned long id2 = strdeque_new();
     
     strdeque_insert_at(id1, 1, "aa");
     
     return 0;
-}
+}*/
