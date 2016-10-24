@@ -12,16 +12,15 @@ unsigned long availableId = 0;
 
 
 //@TODO
-//	-przerobić zgodnie z czytankami ifdef NDEBUG
-//	-Pusta Kolejka
-//	-Zmienne globalne w anonimowym namespace{}, albo jakiś inny sposób ukrycia przed światem
-//	-asercje (?)
+//	
 //
-//Zrobione:
-//
-//	-Extern "C"
-//	-Zamknąć wszystko w namespace jnp1{}
-//
+//	-przerobić zgodnie z czytankami ifdef NDEBUG   - Mateusz
+//	-Pusta Kolejka									- Kacper
+//	-Zmienne globalne w anonimowym namespace{}, albo jakiś inny sposób ukrycia przed światem -Stasiek	
+//	-asercje (?)									- Kacper
+//	-Extern "C"										- Stasiek
+//	-Zamknąć wszystko w namespace jnp1{}			- Stasiek
+//	-Zmienić nazwy plików na .cc					- Stasiek
 
 #ifndef NDEBUG
 unsigned long strdeque_new() {
@@ -154,6 +153,7 @@ int strdeque_comp(unsigned long id1, unsigned long id2) {
     }
 }
 #else
+
 unsigned long strdeque_new() {
     deque <string> kolejka;
     dequeMap.insert(make_pair(availableId, kolejka));
