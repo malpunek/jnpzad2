@@ -17,12 +17,12 @@ unsigned long availableId = 0;
 //	-Zmienne globalne w anonimowym namespace{}, albo jakiś inny sposób ukrycia przed światem
 //	-asercje (?)
 //
-//
 //Zrobione:
 //
 //	-Extern "C"
 //	-Zamknąć wszystko w namespace jnp1{}
 //
+
 #ifndef NDEBUG
 unsigned long strdeque_new() {
     cerr << "strdeque_new()" << endl;
@@ -63,12 +63,12 @@ void strdeque_insert_at(unsigned long id, size_t pos, const char* value) {
             if (pos <= strdeque_size(id)) {
                 cerr << "strdeque_insert_at: " << "deque " << id << ", element \"" << value;
                 cerr << "\" inserted at " << pos << endl;
-                (dequeMap.at(id)).insert((dequeMap.at(id)).begin() + pos, value);
+                (dequeMap.at(id)).insert((dequeMap.at(id)).begin() + pos, string(value));
             }
             else {
                 cerr << "strdeque_insert_at: " << "deque " << id << ", element \"" << value;
                 cerr << "\" inserted at the end" << endl;
-                (dequeMap.at(id)).push_back(value);
+                (dequeMap.at(id)).push_back(string(value));
             }
         }
         else
@@ -175,9 +175,9 @@ void strdeque_insert_at(unsigned long id, size_t pos, const char* value) {
     mapIterator it = dequeMap.find(id);
     if (it != dequeMap.end() and value != NULL) {
         if (pos <= strdeque_size(id))
-            (dequeMap.at(id)).insert((dequeMap.at(id)).begin() + pos, value);
+            (dequeMap.at(id)).insert((dequeMap.at(id)).begin() + pos, string(value));
         else
-            (dequeMap.at(id)).push_back(value);
+            (dequeMap.at(id)).push_back(string(value));
     }
     
 }
