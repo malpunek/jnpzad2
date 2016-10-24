@@ -10,6 +10,15 @@ map<unsigned long, deque<string> > dequeMap;
 
 unsigned long availableId = 0;
 
+
+//@TODO
+//	-przerobić zgodnie z czytankami ifdef NDEBUG
+//	-Extern "C"
+//	-Pusta Kolejka
+//	-Zamknąć wszystko w namespace jnp1{}
+//	-Zmienne globalne w anonimowym namespace{}, albo jakiś inny sposób ukryci przes światem
+//	-asercje (?)
+//
 #ifndef NDEBUG
 unsigned long strdeque_new() {
     cerr << "strdeque_new()" << endl;
