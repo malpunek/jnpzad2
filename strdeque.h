@@ -4,7 +4,7 @@
 #ifdef __cplusplus
 	#include<iostream>
 	namespace jnp1 {
-		extern "C"{
+		extern "C" {
 #endif
 
 			unsigned long strdeque_new();

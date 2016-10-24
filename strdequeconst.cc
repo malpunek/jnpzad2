@@ -11,8 +11,10 @@ namespace {
 #endif
 }
 
-unsigned long emptystrdeque() {
-    if (debugMode)
-        cerr << "emptystrdeque()" << endl;
-    return 0;
+namespace jnp1 {
+    extern "C" unsigned long emptystrdeque() {
+        if (debugMode)
+            cerr << "emptystrdeque()" << endl;
+        return 0;
+    }
 }
