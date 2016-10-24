@@ -13,11 +13,15 @@ unsigned long availableId = 0;
 
 //@TODO
 //	-przerobić zgodnie z czytankami ifdef NDEBUG
-//	-Extern "C"
 //	-Pusta Kolejka
-//	-Zamknąć wszystko w namespace jnp1{}
-//	-Zmienne globalne w anonimowym namespace{}, albo jakiś inny sposób ukryci przes światem
+//	-Zmienne globalne w anonimowym namespace{}, albo jakiś inny sposób ukrycia przed światem
 //	-asercje (?)
+//
+//
+//Zrobione:
+//
+//	-Extern "C"
+//	-Zamknąć wszystko w namespace jnp1{}
 //
 #ifndef NDEBUG
 unsigned long strdeque_new() {

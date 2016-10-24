@@ -1,10 +1,15 @@
 #ifndef strdequeconst_h
 #define strdequeconst_h
 
-#include <stdio.h>
+#ifdef __cplusplus
+	#include<iostream>
+	namespace jnp1{
+		extern "C"
+#endif
+			unsigned long emptystrdeque();
 
-/* Zwraca identyfikator pustej kolejki dwustronnej, do której nic nie można
- wstawiać i z której nic nie można usuwać. */
-unsigned long emptystrdeque();
+#ifdef __cplusplus
+	}
+#endif
 
 #endif /* strdequeconst_h */
