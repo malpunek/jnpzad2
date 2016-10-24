@@ -3,14 +3,16 @@
 
 using namespace std;
 
-#ifndef NDEBUG
-unsigned long emptystrdeque() {
-    cerr << "emptystrdeque()" << endl;
-    return 0;
-}
+namespace {
+#ifdef NDEBUG
+    static const bool debugMode = false;
 #else
+    static const bool debugMode = true;
+#endif
+}
+
 unsigned long emptystrdeque() {
+    if (debugMode)
+        cerr << "emptystrdeque()" << endl;
     return 0;
 }
-#endif
-
