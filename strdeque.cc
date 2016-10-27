@@ -9,11 +9,11 @@ using namespace std;
 
 namespace {
     const bool get_debug(){
-    #ifdef NDEBUG
+#ifdef NDEBUG
         static const bool debugMode = false;
-    #else
+#else
         static const bool debugMode = true;
-    #endif
+#endif
         return debugMode;
     }
     
@@ -28,23 +28,29 @@ namespace {
         return availableId;
     };
     
+    const unsigned long get_emptyId() {
+        static const unsigned long emptyId = jnp1::emptystrdeque();
+        return emptyId;
+    };
+    
     static string printId(unsigned long id) {
-        if (id == jnp1::emptystrdeque())
+        if (id == get_emptyId())
             return "the Empty Deque";
         else
             return to_string(id);
     }
     
     static string printDequeId(unsigned long id) {
-        if (id == jnp1::emptystrdeque())
+        if (id == get_emptyId())
             return "the Empty Deque";
         else
             return "deque " + to_string(id);
     }
     
     static int checkInsertAt(unsigned long id, size_t pos, const char* value) {
+        string dequeName = printId(id);
         if (get_debug()) {
-            cerr << "strdeque_insert_at(" << printId(id) << ", " << pos << ", ";
+            cerr << "strdeque_insert_at(" << dequeName << ", " << pos << ", ";
             
             if (value == NULL)
                 cerr << "NULL" << ")" << endl;
@@ -52,7 +58,7 @@ namespace {
                 cerr << "\"" << value << "\"" << ")" << endl;
         }
         
-        if (id == jnp1::emptystrdeque()) {
+        if (id == get_emptyId()) {
             if (get_debug())
                 cerr << "strdeque_insert_at: attempt to insert into the Empty Deque" << endl;
             return 1;
@@ -99,10 +105,11 @@ namespace jnp1 {
     }
     
     extern "C" void strdeque_delete(unsigned long id) {
+        string dequeName = printId(id);
         if (get_debug())
-            cerr << "strdeque_delete(" << printId(id) << ")" << endl;
+            cerr << "strdeque_delete(" << dequeName << ")" << endl;
         
-        if (id == jnp1::emptystrdeque()) {
+        if (id == get_emptyId()) {
             if (get_debug())
                 cerr << "strdeque_delete: attempt to remove the Empty Deque" << endl;
             return;
@@ -121,10 +128,11 @@ namespace jnp1 {
     }
     
     extern "C" size_t strdeque_size(unsigned long id) {
+        string dequeName = printId(id);
         if (get_debug())
-            cerr << "strdeque_size(" << printId(id) << ")" << endl;
+            cerr << "strdeque_size(" << dequeName << ")" << endl;
         
-        if (id == jnp1::emptystrdeque()) {
+        if (id == get_emptyId()) {
             if (get_debug())
                 cerr << "strdeque_size: the Empty Deque contains 0 elements" << endl;
             return (size_t) 0;
@@ -175,10 +183,11 @@ namespace jnp1 {
     }
     
     extern "C" void strdeque_remove_at(unsigned long id, size_t pos) {
+        string dequeName = printId(id);
         if (get_debug())
-            cerr << "strdeque_remove_at(" << printId(id) << ", " << pos <<  ")" << endl;
+            cerr << "strdeque_remove_at(" << dequeName << ", " << pos <<  ")" << endl;
         
-        if (id == jnp1::emptystrdeque()) {
+        if (id == get_emptyId()) {
             if (get_debug())
                 cerr << "strdeque_remove_at: attempt to remove from the Empty Deque" << endl;
             return;
@@ -204,10 +213,11 @@ namespace jnp1 {
     }
     
     extern "C" const char* strdeque_get_at(unsigned long id, size_t pos) {
+        string dequeName = printId(id);
         if (get_debug())
-            cerr << "strdeque_get_at(" << printId(id) << ", " << pos <<  ")" << endl;
+            cerr << "strdeque_get_at(" << dequeName << ", " << pos <<  ")" << endl;
         
-        if (id == jnp1::emptystrdeque()) {
+        if (id == get_emptyId()) {
             if (get_debug())
                 cerr << "the Empty Deque does not contain an element at " << pos << endl;
             return NULL;
@@ -235,10 +245,11 @@ namespace jnp1 {
     }
     
     extern "C" void strdeque_clear(unsigned long id) {
+        string dequeName = printId(id);
         if (get_debug())
-            cerr << "strdeque_clear(" << printId(id) << ")" << endl;
+            cerr << "strdeque_clear(" << dequeName << ")" << endl;
         
-        if (id == jnp1::emptystrdeque()) {
+        if (id == get_emptyId()) {
             if (get_debug())
                 cerr << "attempt to clear the Empty Deque" << endl;
             return;
@@ -256,12 +267,17 @@ namespace jnp1 {
     }
     
     extern "C" int strdeque_comp(unsigned long id1, unsigned long id2) {
-        if (get_debug())
-            cerr << "strdeque_comp(" << printId(id1) << ", " << printId(id2) <<  ")" << endl;
         unsigned long dq1 = id1;
         if (get_dequeMap().find(dq1) == get_dequeMap().end())
-            dq1 = emptystrdeque();
+            dq1 = get_emptyId();
         unsigned long dq2 = id2;
+        if (get_dequeMap().find(dq2) == get_dequeMap().end())
+            dq2 = get_emptyId();
+        
+        if (get_debug())
+            cerr << "strdeque_comp(" << printId(id1) << ", " << printId(id2) <<  ")" << endl;
+        if (get_dequeMap().find(dq1) == get_dequeMap().end())
+            dq1 = emptystrdeque();
         if (get_dequeMap().find(dq2) == get_dequeMap().end())
             dq2 = emptystrdeque();
         
