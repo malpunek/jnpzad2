@@ -307,15 +307,3 @@ namespace jnp1 {
         return compExistingDeques(id1, id2);
     }
 }
-
-int main (int args, char *argv[]) {
-    unsigned long id1 = jnp1::strdeque_new();
-    jnp1::strdeque_insert_at(id1, 2, "dsadsa");
-    jnp1::strdeque_insert_at(id1, 0, "dasda");
-    jnp1::strdeque_remove_at(id1, 2);
-    jnp1::strdeque_remove_at(id1, 0);
-    jnp1::strdeque_remove_at(0, 2);
-    cerr << dequeMap.size() << endl;
-    
-    return 0;
-}
