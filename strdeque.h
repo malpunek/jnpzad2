@@ -3,8 +3,11 @@
 
 #ifdef __cplusplus
 	#include<iostream>
+	#include<cstddef>
 	namespace jnp1 {
 		extern "C" {
+#else
+	#include<stddef.h>
 #endif
 
 			unsigned long strdeque_new();
