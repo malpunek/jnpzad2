@@ -274,8 +274,11 @@ namespace jnp1 {
         if (get_dequeMap().find(dq2) == get_dequeMap().end())
             dq2 = get_emptyId();
         
+        string dequeName1 = printId(id1);
+        string dequeName2 = printId(id2);
+        
         if (get_debug())
-            cerr << "strdeque_comp(" << printId(id1) << ", " << printId(id2) <<  ")" << endl;
+            cerr << "strdeque_comp(" << dequeName1 << ", " << dequeName2 <<  ")" << endl;
         if (get_dequeMap().find(dq1) == get_dequeMap().end())
             dq1 = emptystrdeque();
         if (get_dequeMap().find(dq2) == get_dequeMap().end())
@@ -283,9 +286,12 @@ namespace jnp1 {
         
         int result = compDeques(dq1, dq2);
         
+        dequeName1 = printDequeId(id1);
+        dequeName2 = printDequeId(id2);
+        
         if (get_debug()) {
-            cerr << "strdeque_comp: result of comparing " << printDequeId(id1) << " to "
-            << printDequeId(id2) << " is " << result << endl;
+            cerr << "strdeque_comp: result of comparing " << dequeName1 << " to "
+            << dequeName2 << " is " << result << endl;
         }
         
         return result;
