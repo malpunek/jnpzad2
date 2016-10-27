@@ -2,8 +2,8 @@
 #define strdeque_h
 
 #ifdef __cplusplus
-	#include<iostream>
 	#include<cstddef>
+	#include<iostream>
 	namespace jnp1 {
 		extern "C" {
 #else

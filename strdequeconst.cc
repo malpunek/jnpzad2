@@ -1,20 +1,25 @@
 #include <iostream>
 #include "strdequeconst.h"
+#include "strdeque.h"
 
 using namespace std;
 
 namespace {
-#ifdef NDEBUG
-    static const bool debugMode = false;
-#else
-    static const bool debugMode = true;
-#endif
+    const bool get_debug(){
+    #ifdef NDEBUG
+        static const bool debugMode = false;
+    #else
+        static const bool debugMode = true;
+    #endif
+        return debugMode;
+    }
 }
 
 namespace jnp1 {
     extern "C" unsigned long emptystrdeque() {
-        if (debugMode)
+        if (get_debug())
             cerr << "emptystrdeque()" << endl;
-        return 0;
+        static const unsigned long empty_deque_id = strdeque_new();
+        return empty_deque_id;
     }
 }

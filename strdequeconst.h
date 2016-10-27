@@ -2,7 +2,7 @@
 #define strdequeconst_h
 
 #ifdef __cplusplus
-	#include<iostream>
+	#include <iostream>
 	namespace jnp1{
 		extern "C"
 #endif
