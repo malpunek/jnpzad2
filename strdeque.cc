@@ -258,8 +258,14 @@ namespace jnp1 {
     extern "C" int strdeque_comp(unsigned long id1, unsigned long id2) {
         if (get_debug())
             cerr << "strdeque_comp(" << printId(id1) << ", " << printId(id2) <<  ")" << endl;
+        unsigned long dq1 = id1;
+        if (get_dequeMap().find(dq1) == get_dequeMap().end())
+            dq1 = emptystrdeque();
+        unsigned long dq2 = id2;
+        if (get_dequeMap().find(dq2) == get_dequeMap().end())
+            dq2 = emptystrdeque();
         
-        int result = compDeques(id1, id2);
+        int result = compDeques(dq1, dq2);
         
         if (get_debug()) {
             cerr << "strdeque_comp: result of comparing " << printDequeId(id1) << " to "
